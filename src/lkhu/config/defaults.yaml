@@ -1,0 +1,77 @@
+# lkhu default config values (design doc §14.1)
+# These values apply when no user config file is present.
+
+encoder:
+  provider: "ollama"
+  model: "snowflake-arctic-embed2"  # 1024-dim multilingual; top retrieval/cross-lingual in lkhu eval
+  dim: 1024
+  semantic_weight: 0.6
+  structure_weight: 0.4
+
+codebook:
+  initial_keys:
+    - K_USER
+    - K_TIME
+    - K_TOPIC
+    - K_VALUE
+    - K_PRIORITY
+    - K_DECISION
+    - K_QUESTION
+    - K_ANSWER
+    - K_EMOTION
+    - K_SESSION
+    - K_FACT
+    - K_PREFERENCE
+    - K_PROJECT
+    - K_FILE
+    - K_LANGUAGE
+  auto_discovery: true
+  random_seed: null  # generated from OS entropy at init, then permanently fixed
+
+working_memory:
+  max_turns: 50
+  flush_idle_minutes: 30
+
+short_term:
+  retention_days: 3
+  daily_decay: 0.7
+
+long_term:
+  daily_decay: 0.99
+  recall_boost: 1.05
+  max_strength: 1.5
+  dedup_threshold: 0.95   # on auto-save, near-identical (cosine ≥) memories are reinforced, not duplicated
+  dedup_reinforce: 1.02   # strength bump applied to the kept memory on a deduped re-observation
+
+recall:
+  default_k: 5
+  candidate_multiplier: 3
+  rerank_weights:
+    similarity: 0.6
+    strength: 0.2
+    recency: 0.2
+  reinforce_sim_threshold: 0.58  # only genuine hits (cosine ≥) get Hebbian reinforcement; below
+                                 # this, noise is never reinforced so it decays out of the way
+  min_similarity: 0.0   # optional: drop recall candidates below this cosine to trim low-relevance
+                        # noise. Off by default — the right value is embedder-specific (e.g. ~0.30
+                        # for snowflake-arctic-embed2); measure with `lkhu eval` before enabling.
+
+decoder:
+  tier1_audit_max_len: 150
+  tier2_unbind_threshold: 0.7
+  tier3_llm_max_tokens: 80
+
+consolidation:
+  schedule_cron: "0 3 * * *"   # 03:00 daily
+  min_session_size: 3
+
+cleansing:
+  schedule_cron: "30 3 * * 0"  # 03:30 Sunday
+  duplicate_threshold: 0.95
+  weak_strength: 0.1
+  weak_min_age_days: 30
+
+backup:
+  daily_retention: 30
+  weekly_retention: 12
+  monthly_retention: -1

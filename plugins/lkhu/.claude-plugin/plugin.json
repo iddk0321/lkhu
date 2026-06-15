@@ -1,0 +1,14 @@
+{
+  "name": "lkhu",
+  "displayName": "lkhu (Like Human Memory)",
+  "version": "0.1.0",
+  "description": "Gives Claude Code latent-vector memory that works like the human brain. Injects automatic recall context on SessionStart/UserPromptSubmit, saves the conversation on Stop, and registers the lkhu MCP server (stdio). Prerequisite: the lkhu console command on PATH (pipx install lkhu).",
+  "author": {
+    "name": "lkhu contributors",
+    "email": "developer.donguk@gmail.com"
+  },
+  "homepage": "https://github.com/iddk0321/lkhu",
+  "repository": "https://github.com/iddk0321/lkhu",
+  "license": "Apache-2.0",
+  "keywords": ["memory", "mcp", "vsa", "hrr", "recall", "ollama", "claude-code"]
+}

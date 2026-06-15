@@ -1,0 +1,23 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "lkhu",
+  "description": "lkhu (Like Human) — an MCP plugin marketplace that gives Claude Code memory that works like the human brain",
+  "owner": {
+    "name": "lkhu contributors",
+    "email": "developer.donguk@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "lkhu",
+      "description": "Registers automatic recall/save hooks (SessionStart, UserPromptSubmit, Stop) and the lkhu latent-vector memory MCP server. Prerequisite: the lkhu console command on PATH (pipx install lkhu).",
+      "source": "./plugins/lkhu",
+      "author": {
+        "name": "lkhu contributors",
+        "email": "developer.donguk@gmail.com"
+      },
+      "category": "productivity",
+      "keywords": ["memory", "mcp", "vsa", "hrr", "recall", "ollama"],
+      "homepage": "https://github.com/iddk0321/lkhu"
+    }
+  ]
+}

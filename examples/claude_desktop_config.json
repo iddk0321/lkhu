@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lkhu": {
+      "command": "lkhu",
+      "args": ["serve"]
+    }
+  }
+}

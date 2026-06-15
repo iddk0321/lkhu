@@ -1,0 +1,83 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lkhu"
+version = "0.1.0"
+description = "Like Human — an open-source MCP plugin that gives Claude Code memory that works like the human brain"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "lkhu contributors" }]
+keywords = ["mcp", "memory", "vsa", "hrr", "claude", "embeddings", "ollama"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.26",
+    "platformdirs>=4.0",
+    "typer>=0.12",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+    "faiss-cpu>=1.8",
+    "APScheduler>=3.10",
+    "fastmcp>=2.0",
+    "ollama>=0.3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "types-PyYAML>=6.0",
+]
+
+[project.scripts]
+lkhu = "lkhu.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/iddk0321/lkhu"
+Repository = "https://github.com/iddk0321/lkhu"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lkhu"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/lkhu/config/defaults.yaml" = "lkhu/config/defaults.yaml"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "N", "W"]
+ignore = ["N999"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src/lkhu"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "ollama: tests that require a running Ollama server (skipped by default in CI)",
+]
+
+[tool.coverage.run]
+source = ["lkhu"]
+branch = true

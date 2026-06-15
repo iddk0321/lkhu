@@ -1,0 +1,39 @@
+{
+  "description": "lkhu automatic memory hooks: inject recall context on SessionStart/UserPromptSubmit, save the conversation on Stop. Every command invokes the lkhu console script on PATH (pipx install lkhu prerequisite).",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "lkhu hook session-start",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "lkhu hook user-prompt",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "lkhu hook stop",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

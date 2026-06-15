@@ -1,0 +1,27 @@
+lkhu (Like Human)
+Copyright 2026 lkhu contributors
+
+This product includes software developed as part of the lkhu project.
+Licensed under the Apache License, Version 2.0.
+
+------------------------------------------------------------------------
+Third-party dependencies and their licenses
+------------------------------------------------------------------------
+
+This software depends on the following third-party packages. Each is the
+property of its respective authors and is distributed under its own license.
+
+  - fastmcp ............ MIT License
+  - ollama ............. MIT License
+  - faiss-cpu .......... MIT License
+  - numpy .............. BSD 3-Clause License
+  - APScheduler ........ MIT License
+  - platformdirs ....... MIT License
+  - typer .............. MIT License
+  - pyyaml ............. MIT License
+  - rich ............... MIT License
+
+This software also relies, at runtime, on the user-installed Ollama
+(https://ollama.com) and the BAAI/bge-m3 embedding model
+(https://huggingface.co/BAAI/bge-m3), which are obtained and licensed
+separately by the end user.
