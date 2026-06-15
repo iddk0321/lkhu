@@ -125,9 +125,7 @@ def install(
         )
     else:
         try:
-            with console.status(
-                f"  Pulling {DEFAULT_MODEL} (~1.2 GB, one time)…", spinner="dots"
-            ):
+            with console.status(f"  Pulling {DEFAULT_MODEL} (~1.2 GB, one time)…", spinner="dots"):
                 emb.ensure_model()
             console.print(f"  [green]✓[/green] {DEFAULT_MODEL} pulled")
         except Exception as e:  # noqa: BLE001
