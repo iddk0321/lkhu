@@ -87,12 +87,20 @@ def init() -> None:
 
 
 @app.command()
-def install() -> None:
-    """Generate codebook + register Claude Desktop MCP. (Claude Code installs as a plugin.)"""
-    from lkhu.platform import setup
-    from lkhu.platform.ollama import OllamaEmbedder
+def install(
+    skip_model: bool = typer.Option(
+        False, "--skip-model", help="Don't auto-pull the embedding model"
+    ),
+) -> None:
+    """Set up lkhu: codebook + Claude Desktop MCP + the local embedding model.
 
-    console.print("🧠 [bold]Starting lkhu installation...[/bold]")
+    Pulls the embedding model via Ollama if it's missing (a one-time ~1.2 GB download), so the
+    install finishes end to end. Claude Code itself is added separately as a plugin (shown below).
+    """
+    from lkhu.platform import setup
+    from lkhu.platform.ollama import DEFAULT_MODEL, OllamaEmbedder, ollama_available
+
+    console.print("[bold]Starting lkhu installation...[/bold]")
     result = setup.install()
     console.print(f"  Data directory: {result['data_dir']}")
     console.print(
@@ -100,20 +108,41 @@ def install() -> None:
         + ("generated (triple backup)" if result["codebook_created"] else "preserved")
     )
     console.print("  [green]✓[/green] Claude Desktop MCP registered")
-    if OllamaEmbedder().is_available():
-        console.print("  [green]✓[/green] Ollama + snowflake-arctic-embed2 available")
-    else:
+
+    # Bootstrap the local embedding model so the user doesn't hit a "model missing" wall later.
+    emb = OllamaEmbedder()
+    if not ollama_available():
         console.print(
-            "  [yellow]![/yellow] Ollama not detected — install from https://ollama.com then "
-            "run 'ollama pull snowflake-arctic-embed2'"
+            "  [yellow]![/yellow] Ollama not detected — install it from https://ollama.com, "
+            f"then re-run 'lkhu install' (or 'ollama pull {DEFAULT_MODEL}')"
         )
+    elif emb.has_model():
+        console.print(f"  [green]✓[/green] Ollama + {DEFAULT_MODEL} available")
+    elif skip_model:
+        console.print(
+            f"  [yellow]![/yellow] {DEFAULT_MODEL} not pulled (--skip-model) — "
+            f"run 'ollama pull {DEFAULT_MODEL}' before first use"
+        )
+    else:
+        try:
+            with console.status(
+                f"  Pulling {DEFAULT_MODEL} (~1.2 GB, one time)…", spinner="dots"
+            ):
+                emb.ensure_model()
+            console.print(f"  [green]✓[/green] {DEFAULT_MODEL} pulled")
+        except Exception as e:  # noqa: BLE001
+            console.print(
+                f"  [yellow]![/yellow] Could not pull {DEFAULT_MODEL} ({e}). "
+                f"Run 'ollama pull {DEFAULT_MODEL}' manually."
+            )
+
     console.print(
         Panel.fit(
-            "✅ Desktop installation complete!\n\n"
-            "[bold]Install Claude Code as a plugin:[/bold]\n"
-            "  claude plugin marketplace add <lkhu repo>\n"
+            "Desktop installation complete!\n\n"
+            "[bold]Add lkhu to Claude Code as a plugin:[/bold]\n"
+            "  claude plugin marketplace add iddk0321/lkhu\n"
             "  claude plugin install lkhu@lkhu\n"
-            "  → restart Claude Code",
+            "  → restart Claude Code, then verify with 'lkhu doctor'",
             border_style="green",
         )
     )
