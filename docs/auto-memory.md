@@ -10,8 +10,7 @@ You need Ollama with `snowflake-arctic-embed2`, the `lkhu` CLI on your PATH, and
 
 ```bash
 ollama pull snowflake-arctic-embed2
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 lkhu install
 
 claude plugin marketplace add iddk0321/lkhu

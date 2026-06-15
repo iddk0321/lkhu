@@ -29,12 +29,12 @@ npx claude-mem install
 lkhu:
 
 ```bash
-pipx install git+https://github.com/iddk0321/lkhu
+pipx install lkhu
 claude plugin marketplace add iddk0321/lkhu
 claude plugin install lkhu@lkhu
 ```
 
-(Once lkhu is published to PyPI, the first line becomes `pipx install lkhu`.) lkhu additionally needs [Ollama](https://ollama.com) with `ollama pull snowflake-arctic-embed2` for local embeddings — that is its only external runtime. See the [installation guides](installation/macos.md) for details.
+lkhu additionally needs [Ollama](https://ollama.com) with `ollama pull snowflake-arctic-embed2` for local embeddings — that is its only external runtime (`lkhu install` pulls the model for you). See the [installation guides](installation/macos.md) for details.
 
 ## Architecture, side by side
 

@@ -5,8 +5,7 @@ Everything you can call in lkhu, on one page. lkhu has one process that owns mem
 This is a reference, not a tutorial. If you're setting up for the first time, start with the [installation guide](installation/macos.md) ([Linux](installation/linux.md), [Windows](installation/windows.md)) or the [docs index](index.md).
 
 ```bash
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 lkhu install
 ```
 

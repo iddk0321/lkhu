@@ -25,8 +25,7 @@ You need Python 3.11+ and [Ollama](https://ollama.com) installed.
 ollama pull snowflake-arctic-embed2
 
 # 2. Install the lkhu CLI
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 
 # 3. One-time setup: codebook + Claude Desktop MCP registration
 lkhu install

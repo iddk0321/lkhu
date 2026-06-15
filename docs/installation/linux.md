@@ -14,8 +14,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama pull snowflake-arctic-embed2
 
 # 2. The lkhu CLI (not on PyPI yet — install from git)
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 
 # 3. Initialize (codebook + Claude Desktop MCP config)
 lkhu install
@@ -90,14 +89,13 @@ ollama list          # snowflake-arctic-embed2 should appear
 lkhu is not on PyPI yet, so install straight from git:
 
 ```bash
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 ```
 
 If your default `python3` is older than 3.11:
 
 ```bash
-pipx install --python python3.11 git+https://github.com/iddk0321/lkhu
+pipx install --python python3.11 lkhu
 ```
 
 Confirm it's on PATH:
@@ -212,7 +210,7 @@ The daemon binds to `127.0.0.1` on port `37700 + (your uid % 100)` — e.g. **37
 On distros where `python3` is 3.10 or older, install a newer interpreter (deadsnakes PPA on Ubuntu LTS, `dnf install python3.11` on Fedora) and tell pipx to use it:
 
 ```bash
-pipx install --python python3.11 git+https://github.com/iddk0321/lkhu
+pipx install --python python3.11 lkhu
 ```
 
 ## Next steps

@@ -12,8 +12,7 @@ Editing `settings.json` or `~/.claude.json` by hand is fragile — Claude Code c
 The plugin is a thin shell — every hook and the MCP declaration invoke the `lkhu` console command on PATH. Install the CLI first:
 
 ```bash
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 
 lkhu install   # creates the codebook + data directories (also registers Claude Desktop MCP)
 ```

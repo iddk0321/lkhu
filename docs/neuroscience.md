@@ -22,8 +22,7 @@ Code, and the lifecycle runs on its own.
 
 ```bash
 # Install the CLI (lkhu is not on PyPI yet)
-pipx install git+https://github.com/iddk0321/lkhu
-# (once published to PyPI: pipx install lkhu)
+pipx install lkhu
 
 # Generate the codebook + register the Claude Desktop MCP server
 lkhu install

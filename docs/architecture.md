@@ -9,8 +9,7 @@ lkhu's answer is deliberately boring: **one resident daemon owns the data, and t
 Before the theory, poke at the real thing:
 
 ```bash
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 
 lkhu install        # codebook + Claude Desktop registration
 lkhu dashboard      # starts the daemon if needed, opens the web UI

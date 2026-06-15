@@ -10,8 +10,7 @@ You need [Ollama](https://ollama.com) with the `snowflake-arctic-embed2` embeddi
 
 ```bash
 ollama pull snowflake-arctic-embed2
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 lkhu install
 ```
 

@@ -17,8 +17,7 @@ brew install --cask ollama-app
 ollama pull snowflake-arctic-embed2
 
 # 3. lkhu itself
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 
 # 4. Initialize (codebook + data dirs + Claude Desktop MCP)
 lkhu install
@@ -70,18 +69,14 @@ ollama pull snowflake-arctic-embed2
 
 ## Step 2 — Install lkhu
 
-lkhu isn't on PyPI yet, so install straight from GitHub:
-
 ```bash
-pipx install git+https://github.com/iddk0321/lkhu
+pipx install lkhu
 ```
-
-Once published to PyPI, this will simply be `pipx install lkhu`.
 
 If your default Python is older than 3.11, point pipx at a newer one:
 
 ```bash
-pipx install --python python3.11 git+https://github.com/iddk0321/lkhu
+pipx install --python python3.11 lkhu
 ```
 
 Check that it landed:

@@ -12,8 +12,7 @@ If you already have Python 3.11+, Git, and Ollama installed, this is the whole t
 ollama pull snowflake-arctic-embed2
 py -m pip install --user pipx
 py -m pipx ensurepath          # then open a NEW terminal
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 lkhu install
 claude plugin marketplace add iddk0321/lkhu
 claude plugin install lkhu@lkhu
@@ -27,7 +26,6 @@ Restart Claude Code and you're done. The rest of this page explains each step, w
 | Requirement | Why | Where |
 |---|---|---|
 | Python 3.11+ | lkhu is a Python package (`requires-python = ">=3.11"`) | [python.org/downloads](https://www.python.org/downloads/) |
-| Git for Windows | `pipx install git+...` clones the repo (lkhu isn't on PyPI yet) | [git-scm.com](https://git-scm.com/download/win) |
 | Ollama | Runs the `snowflake-arctic-embed2` embedding model locally (1024-dim) | [ollama.com](https://ollama.com) |
 | Claude Code CLI | The `claude plugin` commands wire up hooks + MCP | [Claude Code docs](https://docs.anthropic.com/en/docs/claude-code) |
 
@@ -83,8 +81,7 @@ py -m pipx ensurepath
 lkhu is not on PyPI yet, so install straight from the repository:
 
 ```powershell
-pipx install git+https://github.com/iddk0321/lkhu
-# once published to PyPI: pipx install lkhu
+pipx install lkhu
 ```
 
 Verify the CLI landed on your PATH:
@@ -189,16 +186,12 @@ Then **open a new terminal**. If it still fails, `py -m pipx list` shows where p
 Same PATH issue, one level up. You can always invoke it through the launcher instead:
 
 ```powershell
-py -m pipx install git+https://github.com/iddk0321/lkhu
+py -m pipx install lkhu
 ```
 
 ### Typing `python` opens the Microsoft Store
 
 Windows ships an app-execution alias that redirects `python` to the Store when no Python is found first on PATH. Either use `py` everywhere (recommended), or disable the alias under **Settings → Apps → Advanced app settings → App execution aliases**.
-
-### `pipx install git+...` fails with "git not found"
-
-Installing from a git URL requires Git on PATH. Install [Git for Windows](https://git-scm.com/download/win), open a new terminal, retry.
 
 ### Doctor says Ollama is unreachable
 
